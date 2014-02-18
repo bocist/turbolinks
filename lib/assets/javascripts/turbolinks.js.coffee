@@ -53,6 +53,8 @@ fetchReplacement = (url, onLoadFunction = =>) ->
 
   xhr.onloadend = -> xhr = null
   xhr.onerror   = -> document.location.href = url.absolute
+  xhr.onprogress = (e) ->
+    triggerEvent 'page:fetch:progress', e
 
   xhr.send()
 
